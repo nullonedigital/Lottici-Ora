@@ -1,6 +1,7 @@
 export const SITE_CONFIG = {
   name: "Residencial ORA",
   tagline: "Seu novo jeito de viver começa aqui.",
+  gtmId: "GTM-PLGT4RXD",
   description:
     "Conheça o Residencial ORA da Lottici em Canoas/RS. Apartamentos de 2 e 3 dormitórios com sacada e churrasqueira, piscinas, coworking, lazer completo e localização privilegiada na região Igara/São José.",
   city: "Canoas",
