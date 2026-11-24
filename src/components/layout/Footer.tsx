@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,6 +7,7 @@ import { MessageCircle, Phone, MapPin, Globe, ExternalLink, ShieldCheck } from "
 import { OraLogo } from "../ui/BrandLogo";
 import { SITE_CONFIG, CONTACT_CONFIG } from "@/lib/constants";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { trackWhatsAppClick } from "@/lib/meta-tracking";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,6 +31,7 @@ export function Footer() {
                 href={getWhatsAppUrl("Olá! Gostaria de falar com um consultor comercial do Residencial ORA.")}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("WhatsApp Rodapé (Botão)")}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9974A] text-[#082D29] text-xs font-semibold hover:bg-[#DFB772] transition-colors shadow-sm"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
@@ -94,6 +98,7 @@ export function Footer() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick("WhatsApp Rodapé (Link)")}
                     className="hover:text-[#C9974A] transition-colors font-medium text-white"
                   >
                     {CONTACT_CONFIG.whatsappDisplay}

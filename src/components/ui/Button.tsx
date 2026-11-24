@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { trackWhatsAppClick } from "@/lib/meta-tracking";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "whatsapp" | "ghost";
@@ -10,6 +13,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
   children: React.ReactNode;
+  trackCtaName?: string;
 }
 
 export function Button({
@@ -21,10 +25,12 @@ export function Button({
   iconPosition = "left",
   className,
   children,
+  trackCtaName,
+  onClick,
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium rounded-full tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9974A] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group select-none";
+    "inline-flex items-center justify-center font-medium rounded-full tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C9974A] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group select-none cursor-pointer";
 
   const sizeStyles = {
     sm: "text-xs px-4 py-2 gap-1.5",
@@ -61,6 +67,27 @@ export function Button({
     </>
   );
 
+  const handleClick = (e: React.MouseEvent<any>) => {
+    if (onClick) {
+      onClick(e);
+    }
+
+    const isWhatsApp =
+      variant === "whatsapp" ||
+      (href && (href.includes("wa.me") || href.includes("whatsapp")));
+
+    if (isWhatsApp || trackCtaName) {
+      const ctaLabel =
+        trackCtaName ||
+        (typeof children === "string" ? children : "Botão CTA / WhatsApp");
+
+      trackWhatsAppClick(ctaLabel, {
+        cta_href: href,
+        cta_variant: variant,
+      });
+    }
+  };
+
   if (href) {
     if (external) {
       return (
@@ -68,6 +95,7 @@ export function Button({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleClick}
           className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
         >
           {content}
@@ -75,14 +103,22 @@ export function Button({
       );
     }
     return (
-      <Link href={href} className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}>
+      <Link
+        href={href}
+        onClick={handleClick}
+        className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
+      >
         {content}
       </Link>
     );
   }
 
   return (
-    <button className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)} {...props}>
+    <button
+      onClick={handleClick}
+      className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
+      {...props}
+    >
       {content}
     </button>
   );

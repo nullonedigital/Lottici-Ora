@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { getWhatsAppUrl, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
+import { trackWhatsAppClick } from "@/lib/meta-tracking";
 
 export function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);
@@ -94,6 +95,7 @@ export function FloatingWhatsApp() {
             href={getWhatsAppUrl(WHATSAPP_MESSAGES.floating)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("Botão Flutuante WhatsApp (Balão)")}
             className="flex-1 hover:text-[#DFB772] transition-colors leading-snug cursor-pointer select-none"
           >
             Olá! Converse com nosso consultor no WhatsApp
@@ -119,6 +121,7 @@ export function FloatingWhatsApp() {
         href={getWhatsAppUrl(WHATSAPP_MESSAGES.floating)}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackWhatsAppClick("Botão Flutuante WhatsApp (Ícone)")}
         aria-label="Falar com consultor do Residencial ORA no WhatsApp"
         className="relative group p-1 rounded-full bg-[#25D366] text-white shadow-2xl hover:shadow-[#25D366]/50 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 cursor-pointer"
       >

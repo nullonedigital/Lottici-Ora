@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
+import { MetaPageViewTracker } from "@/components/tracking/MetaPageViewTracker";
 
 export const viewport: Viewport = {
   themeColor: "#073B32",
@@ -136,6 +137,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         suppressHydrationWarning
         className="antialiased bg-[#FAF8F5] text-[#082D29] selection:bg-[#C9974A] selection:text-[#082D29]"
       >
+        {/* Meta CAPI & GTM PageView Tracker com deduplicação */}
+        <MetaPageViewTracker />
+
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
