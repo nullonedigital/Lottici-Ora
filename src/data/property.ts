@@ -160,7 +160,7 @@ export const PROPERTY_DATA = {
         "Ambiente refinado para celebrar grandes datas, com mobiliário contemporâneo, bancada de apoio, copa completa e atmosfera acolhedora.",
       image: "/images/amenities/salao-de-festas.jpg",
       badge: "Comemorações",
-      highlights: ["Mobiliário refinado", "Copa equipada", "Climatização", "Capacidade planejada"],
+      highlights: ["Mobiliário refinado", "Copa equipada", "Bancada de apoio", "Capacidade planejada"],
     },
     {
       id: "fitness",
@@ -245,7 +245,7 @@ export const PROPERTY_DATA = {
         "Controle de acesso inteligente com guarita de segurança e área isolada exclusiva para recebimento organizado de encomendas e delivery.",
       image: "/images/hero/portico-entrada.png",
       badge: "Segurança 24h",
-      highlights: ["Acesso seguro de pedestres", "Cancelas automáticas", "Armazenamento de encomendas", "Guarita blindada"],
+      highlights: ["Acesso seguro de pedestres", "Cancelas automáticas", "Armazenamento de encomendas", "Controle de acesso"],
     },
     {
       id: "espaco-pet",

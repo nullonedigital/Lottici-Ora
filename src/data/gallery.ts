@@ -47,7 +47,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "salao-de-festas",
-    title: "Salão de Festas Climatizado",
+    title: "Salão de Festas",
     category: "lazer",
     categoryLabel: "Lazer & Convivência",
     image: "/images/amenities/salao-de-festas.jpg",
